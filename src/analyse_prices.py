@@ -1,3 +1,5 @@
+# pandas two approaches: table with redundant info (easier to plot) versus merged rows
+
 # grafics: try bib: seaborn
 # hardcodierter preissegmente median und teilmedian raussuchen???
 import pandas as pd
