@@ -2,6 +2,8 @@
 
 # grafics: try bib: seaborn
 # hardcodierter preissegmente median und teilmedian raussuchen???
+# todo: gesamten datenflow automatisieren mit parse_args
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
