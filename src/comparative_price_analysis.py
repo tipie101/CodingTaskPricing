@@ -15,6 +15,7 @@ toysff_path = './dummy_data/toysforfun.csv'
 def main():
     amazon_data = pd.read_csv(amazon_path, header=None, sep=';', names=['article_nr', 'subbrand', 'amazon_price', 'amazon_name'], encoding='utf-16')
     toys_data = pd.read_csv(toysff_path, header=None, sep=';', names=['article_nr', 'subbrand', 'toysff_price', 'toysff_amazon_name'], encoding='utf-16')
+    
     # produce two tables: 1. merged rows table, 2. combined table 
     df = amazon_data.merge(toys_data, how='inner')
     df['diff_abs'] = df['toysff_price'] - df['amazon_price'] 
@@ -23,6 +24,7 @@ def main():
     avg_diff = df['diff_abs'].mean()
     avg_diff_percent = df['diff_%'].mean()
     diff_percent = (df['toysff_price'].sum() - df['amazon_price'].sum()) / df['toysff_price'].sum()
+    print(avg_diff, avg_diff_percent, diff_percent)
 
 
     # add types for merging / use the base data again?
@@ -43,6 +45,10 @@ def main():
     g = sns.catplot(x='article_nr', y='price', hue='src', kind='bar', data=result)
     
     plt.show()
+
+    # Idee: die prozentual gesehen stärksten Ausreißer aufführen
+    # 1. hübsches feature 
+    # 2. hilft dabei fehler zu finden
 
 
 if __name__ == '__main__':
