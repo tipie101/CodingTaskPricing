@@ -5,3 +5,7 @@ import pickle
 scraped_data = pickle.load(open('./data/toysff.p', 'rb'))
 df = pd.DataFrame(scraped_data)
 print(df)
+
+scraped_data = pickle.load(open('./data/amazon.p', 'rb'))
+df = pd.DataFrame(scraped_data).drop_duplicates()
+print(df)

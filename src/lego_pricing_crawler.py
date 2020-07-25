@@ -32,17 +32,19 @@ class SpiderToysffLego(scrapy.Spider):
         class_tag = '.product-info'
         for product in response.css(class_tag):
             result = extract_product_info(product.css('.product-name ::text').extract_first())
-            result['price'] = convert_prices(product.css('.price ::text').extract_first())
+            result['price'] = convert_price(product.css('.price ::text').extract_first())
             results.append(result)
             yield result
 
     
-def convert_prices(parsedPrice):
-    if type(parsedPrice) == str:
-        parsedPrice = parsedPrice.replace(',', '.')
+def convert_price(parsed_price):
+    if type(parsed_price) == str:
+        parsed_price = parsed_price.replace(',', '.')
         for char in ['\n', '\xa0', '€']:
-            parsedPrice = parsedPrice.replace(char, '')
-    return float(parsedPrice)
+            parsed_price = parsed_price.replace(char, '')
+        return float(parsed_price.strip())
+        
+    return float(parsed_price)
 
 
 def extract_product_info(info):

@@ -13,8 +13,11 @@ toysff_path = './dummy_data/toysforfun.csv'
 
 
 def main():
+    # verwendung von pickle!
     amazon_data = pd.read_csv(amazon_path, header=None, sep=';', names=['article_nr', 'subbrand', 'amazon_price', 'amazon_name'], encoding='utf-16')
     toys_data = pd.read_csv(toysff_path, header=None, sep=';', names=['article_nr', 'subbrand', 'toysff_price', 'toysff_amazon_name'], encoding='utf-16')
+
+
     
     # produce two tables: 1. merged rows table, 2. combined table 
     df = amazon_data.merge(toys_data, how='inner')

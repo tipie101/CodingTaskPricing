@@ -10,6 +10,8 @@
 # look at <div id="merchant-info"> "Verkauf und Versnad durch Amazon" - perfekt!!!
 # id="price_inside_buybox"
 
+import lego_pricing_crawler  # TODO: utils bib!
+import pandas as pd
 import pickle
 import re
 import scrapy
@@ -17,12 +19,10 @@ from scrapy.crawler import CrawlerProcess
 
 
 amazon_search = []
-lego_articles = [
-    {'article_nr': '21129', 'subbrand': 'Minecraft'},
-    {'article_nr': '42111', 'subbrand': 'Technic'},
-    {'article_nr': '21153', 'subbrand': 'Minecraft'},
-]
-art = lego_articles[0]
+# load from pickle
+lego_articles = pickle.load(open('./data/toysff.p', 'rb'))
+results = []
+original = 'Verkauf und Versand durch Amazon.'
 
 class AmazonLegoSpider(scrapy.Spider):
     # a crawler to collect search result links
@@ -35,7 +35,7 @@ class AmazonLegoSpider(scrapy.Spider):
     def parse(self, response):
         for href in response.css("a::attr(href)").extract():
             if re.search('^/LEGO(%C2%AE)?-', href) and any('-' + art['article_nr'] + '-' in href for art in lego_articles):
-                print(href)
+                # print(href)
                 # TODO: Go deeper :D
                 yield scrapy.Request(
                     response.urljoin(href),
@@ -44,6 +44,13 @@ class AmazonLegoSpider(scrapy.Spider):
 
     def parse_sublink(self, response):
         print('reached sublink - single article view')
+        if response.css('#merchant-info::text') and original in response.css('#merchant-info::text').extract_first():
+            info = response.request.url.split('/')[3]     
+            article_nr = re.findall(r"\D(\d{5})\D", info)[0]
+            price = lego_pricing_crawler.convert_price(response.css("#price_inside_buybox::text").extract_first())
+            result = {'brand': 'LEGO', 'subbrand': '-', 'article_nr': article_nr, 'name': info, 'price': price}
+            results.append(result)
+            yield result
 
 
 if __name__ == '__main__':
@@ -53,3 +60,4 @@ if __name__ == '__main__':
     # SpiderToysffLego.set_subbrand('city')
     process.crawl(AmazonLegoSpider)
     process.start()
+    pickle.dump(results, open( "./data/amazon.p", "wb" ))
