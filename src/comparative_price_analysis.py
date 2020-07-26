@@ -9,27 +9,40 @@ import pickle
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+def basic_compare(path1, path2, prefix1, prefix2, filter=None):
+    price1 = prefix1 + '_price' 
+    price2 = prefix2 + '_price'
+    scraped_data_1 = pickle.load(open(path1, 'rb'))
+    df1 = pd.DataFrame(scraped_data_1).rename(columns={'price': price1, 'name': prefix1 + '_name'})
+    if filter:
+        # filter by subbrand and/or price_segment
+        df1 = filter(df1)
 
-def main():  
-    # TODO: In Methode auslagern
-    scraped_data_toysff = pickle.load(open('./data/toysff.p', 'rb'))
-    toys_data = pd.DataFrame(scraped_data_toysff).rename(columns={'price': 'toysff_price', 'name': 'toysff_name'})
-
-    scraped_data_amazon = pickle.load(open('./data/amazon.p', 'rb'))
-    amazon_data = pd.DataFrame(scraped_data_amazon).rename(columns={'price': 'amazon_price', 'name': 'amazon_ifo'})
+    scraped_data_2 = pickle.load(open(path2, 'rb'))
+    df2 = pd.DataFrame(scraped_data_2).rename(columns={'price': price2, 'name': prefix2 + '_name'})
     
     # produce two tables: 1. merged rows table, 2. combined table 
     # reconstruct the subbrands!!!
-    df = amazon_data.merge(toys_data, how='inner')
-    df['diff_abs'] = df['toysff_price'] - df['amazon_price'] 
-    df['diff_%'] = 100 * df['diff_abs'] / df['toysff_price']
+    df = df1.merge(df2, how='inner')
+    df['diff_abs'] = df[price1] - df[price2] 
+    df['diff_%'] = 100 * df['diff_abs'] / df[price1]
+
     # compare prices - output: #articles, abs diff, avg diff, diff%, avg diff%
     avg_diff = df['diff_abs'].mean()
     avg_diff_percent = df['diff_%'].mean()
-    diff_percent = (df['toysff_price'].sum() - df['amazon_price'].sum()) / df['toysff_price'].sum()
+    diff_percent = (df[price1].sum() - df[price2].sum()) / df[price1].sum()
+
     print(avg_diff, avg_diff_percent, diff_percent)
-    print(df)  # TODO: CSV-EXPORT
     print(len(df.article_nr.unique()))
+
+    return df.drop_duplicates(subset=df.columns.difference([prefix2 + '_name']))
+
+def output_as_csv(df, name):
+    df.to_csv(name, index = False)
+
+def main():
+    df = basic_compare('./data/toysff.p', './data/amazon.p', 'toysff', 'amazon')
+    output_as_csv(df, './output/price_differences.csv')
     return
     
     # TODO: 

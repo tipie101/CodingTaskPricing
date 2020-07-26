@@ -42,7 +42,10 @@ class SpiderToysffLego(scrapy.Spider):
         class_tag = '.product-info'
         for product in response.css(class_tag):
             result = extract_product_info(product.css('.product-name ::text').extract_first())
-            result['price'] = convert_price(product.css('.price ::text').extract_first())
+            if product.css('.special-price'):
+                result['price'] = convert_price(product.css('.special-price .price ::text').extract_first())
+            else:
+                result['price'] = convert_price(product.css('.price ::text').extract_first())
             results.append(result)
             yield result
 
