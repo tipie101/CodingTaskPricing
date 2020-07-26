@@ -1,87 +1,77 @@
 brand,subbrand,article_nr,toysff_name,toysff_price,amazon_name,amazon_price,diff_abs,diff_%,price_segment
-LEGO,Classic ,10914, LEGO® DUPLO® Deluxe Steinebox,39.99,LEGO-10914-Aufbewahrungsbox-Steine-Lernspielzeug-Kleinkinder,38.01,1.980000000000004,4.951237809452373,1
-LEGO,Classic ,11010, Weiße Bauplatte,7.49,LEGO-11010-Classic-Winter-Sets-Konstruktionsbasis,7.75,-0.2599999999999998,-3.471295060080104,0
-LEGO,Classic ,10913, LEGO® DUPLO® Steinebox,29.95,LEGO-10913-Aufbewahrungsbox-Lernspielzeug-Kleinkinder,21.44,8.509999999999998,28.41402337228714,1
-LEGO,Classic ,10715, Kreativ-Bauset Fahrzeuge,23.95,LEGO-Classic-10715-Kreativ-Bauset-Fahrzeuge,20.46,3.4899999999999984,14.57202505219206,1
-LEGO,Classic ,10715, Kreativ-Bauset Fahrzeuge,23.95,LEGO-Classic-10715-Kreativ-Bauset-Fahrzeuge,24.77,-0.8200000000000003,-3.423799582463467,1
 LEGO,DUPLO® ,10931, Bagger und Laster,17.49,LEGO-10931-pelleteuse-Produkttitel-nachgereicht,17.54,-0.05000000000000071,-0.2858776443682145,0
-LEGO,Classic ,10692, Bausteine - Set,14.99,LEGO-Classic-10692-Bausteine-Set-Lerncharakter,11.98,3.01,20.08005336891261,0
-LEGO,Classic ,10713, Bausteine Starterkoffer - Farben sortieren,17.95,LEGO-Classic-10713-Bausteine-Starterkoffer,13.97,3.9799999999999986,22.17270194986072,0
-LEGO,Classic ,10714, Blaue Bauplatte,6.95,LEGO-Classic-10714-Bauplatte-Kreatives,6.8,0.15000000000000036,2.1582733812949693,0
-LEGO,Creator ,31058, Dinosaurier,13.49,LEGO-Creator-31058-Dinosaurier-Spielzeug,11.39,2.0999999999999996,15.567086730911784,0
 LEGO,DUPLO® ,10933, Große Baustelle mit Licht und Ton,111.49,LEGO-10933-Construction-Produkttitel-nachgereicht,89.99,21.5,19.28424073907974,3
 LEGO,DUPLO® ,10932, Baustelle mit Abrissbirne,55.95,LEGO-10932-d%C3%A9molition-Produkttitel-nachgereicht,48.63,7.32,13.083109919571045,2
+LEGO,Creator ,31058, Dinosaurier,13.49,LEGO-Creator-31058-Dinosaurier-Spielzeug,11.39,2.0999999999999996,15.567086730911784,0
 LEGO,DUPLO® ,10930, Radlader,9.49,LEGO-10930-Produkttitel-fehlt-Wird-nachgereicht,9.49,0.0,0.0,0
 LEGO,Creator ,31109, Piratenschiff,91.49,LEGO-31109-Produkttitel-fehlt-Wird-nachgereicht,77.84,13.649999999999991,14.919663351185912,3
 LEGO,DUPLO® ,10924, Lightning McQueens großes Rennen,29.99,LEGO-10924-Produkttitel-fehlt-Wird-nachgereicht,27.85,2.139999999999997,7.13571190396798,1
-LEGO,DUPLO® ,10922, Arielles Unterwasserschloss,29.99,LEGO-10922-Produkttitel-fehlt-Wird-nachgereicht,28.12,1.8699999999999974,6.235411803934637,1
-LEGO,DUPLO® ,10919, Bathöhle,34.99,LEGO-10919-Produkttitel-fehlt-Wird-nachgereicht,31.23,3.7600000000000016,10.745927407830813,1
-LEGO,DUPLO® ,10899, Elsas Eispalast,47.49,LEGO-10899-Duplo_F_Confidential-Produkttitel-nachgereicht,35.05,12.440000000000005,26.194988418614454,2
 LEGO,Creator ,31108, Campingurlaub,72.49,LEGO-31108-Produkttitel-fehlt-Wird-nachgereicht,58.33,14.159999999999997,19.53372879017795,3
 LEGO,Creator ,31107, Planeten Erkundungs-Rover,46.49,LEGO-31107-Lexplorateur-Produkttitel-nachgereicht,37.19,9.300000000000004,20.004302000430208,2
 LEGO,Creator ,31088, Bewohner der Tiefsee,16.49,LEGO-Creator-31088-Bewohner-Tiefsee,11.69,4.799999999999999,29.10855063674954,0
 LEGO,Creator ,31102, Feuerdrache,16.95,LEGO-31102-Creator-Feuerdrache-S%C3%A4belzahntiger,15.59,1.3599999999999994,8.023598820058995,0
 LEGO,Creator ,31105, Spielzeugladen im Stadthaus,46.49,LEGO-31105-Creator-Spielzeugladen-Stadthaus,37.03,9.46,20.348462034846204,2
+LEGO,Classic ,10914, LEGO® DUPLO® Deluxe Steinebox,39.99,LEGO-10914-Aufbewahrungsbox-Steine-Lernspielzeug-Kleinkinder,38.01,1.980000000000004,4.951237809452373,1
+LEGO,Classic ,11010, Weiße Bauplatte,7.49,LEGO-11010-Classic-Winter-Sets-Konstruktionsbasis,7.75,-0.2599999999999998,-3.471295060080104,0
+LEGO,DUPLO® ,10922, Arielles Unterwasserschloss,29.99,LEGO-10922-Produkttitel-fehlt-Wird-nachgereicht,28.12,1.8699999999999974,6.235411803934637,1
+LEGO,Creator ,31103, Raketen-Truck,24.99,LEGO-31103-Creator-Raketen-Truck-Gel%C3%A4ndewagen,18.42,6.569999999999997,26.290516206482582,1
+LEGO,Classic ,10913, LEGO® DUPLO® Steinebox,29.95,LEGO-10913-Aufbewahrungsbox-Lernspielzeug-Kleinkinder,21.44,8.509999999999998,28.41402337228714,1
+LEGO,Classic ,10715, Kreativ-Bauset Fahrzeuge,23.95,LEGO-Classic-10715-Kreativ-Bauset-Fahrzeuge,20.46,3.4899999999999984,14.57202505219206,1
+LEGO,DUPLO® ,10919, Bathöhle,34.99,LEGO-10919-Produkttitel-fehlt-Wird-nachgereicht,32.37,2.6200000000000045,7.487853672477863,1
+LEGO,DUPLO® ,10899, Elsas Eispalast,47.49,LEGO-10899-Duplo_F_Confidential-Produkttitel-nachgereicht,35.05,12.440000000000005,26.194988418614454,2
 LEGO,DUPLO® ,10872, Eisenbahnbrücke und Schienen,24.99,LEGO-DUPLO-Eisenbahnbr%C3%BCcke-Schienen-10872-Konstruktionsspielzeug,19.49,5.5,22.008803521408566,1
 LEGO,DUPLO® ,10929, Unser Wohnhaus,55.95,LEGO-10929-Wohnhaus-Puppenhaus-Kleinkinder,45.58,10.370000000000005,18.53440571939232,2
 LEGO,DUPLO® ,10928, Tortenbäckerei,38.49,LEGO-10928-Tortenb%C3%A4ckerei-Caf%C3%A9-Wagen-Kleinkinder,29.23,9.260000000000002,24.058196934268643,1
-LEGO,DUPLO® ,10925, Spielzimmer-Spielbox,13.49,LEGO-10925-Spielzimmer-Spielbox-Kleinkinder-Lernspielzeug,10.71,2.7799999999999994,20.607857672349883,0
-LEGO,Creator ,31103, Raketen-Truck,24.99,LEGO-31103-Creator-Raketen-Truck-Gel%C3%A4ndewagen,18.42,6.569999999999997,26.290516206482582,1
-LEGO,DUPLO® ,10882, Eisenbahn Schienen,19.99,LEGO-DUPLO-Eisenbahn-Schienen-10882-Konstruktionsspielzeug,16.07,3.919999999999998,19.60980490245122,0
 LEGO,Friends ,31095, Jahrmarktkarussell,46.49,LEGO-31095-Produkttitel-fehlt-Wird-nachgereicht,38.74,7.75,16.670251667025166,2
-LEGO,Creator ,31094, Rennflugzeug,28.49,LEGO-31094-Creator-Rennflugzeug,22.4,6.09,21.375921375921376,1
-LEGO,DUPLO® ,10875, Güterzug,84.95,LEGO-10875-LEGO-DUPLO-G%C3%BCterzug-Kinderspielzeug,77.9,7.049999999999997,8.298999411418478,3
+LEGO,DUPLO® ,10925, Spielzimmer-Spielbox,13.49,LEGO-10925-Spielzimmer-Spielbox-Kleinkinder-Lernspielzeug,10.71,2.7799999999999994,20.607857672349883,0
+LEGO,Classic ,10692, Bausteine - Set,14.99,LEGO-Classic-10692-Bausteine-Set-Lerncharakter,11.98,3.01,20.08005336891261,0
+LEGO,Classic ,10713, Bausteine Starterkoffer - Farben sortieren,17.95,LEGO-Classic-10713-Bausteine-Starterkoffer,13.97,3.9799999999999986,22.17270194986072,0
+LEGO,Classic ,10714, Blaue Bauplatte,6.95,LEGO-Classic-10714-Bauplatte-Kreatives,6.8,0.15000000000000036,2.1582733812949693,0
 LEGO,Creator ,31087, Strandbuggy,10.95,LEGO-31087-Creator-Strandbuggy,9.99,0.9599999999999991,8.767123287671225,0
 LEGO,Creator ,31090, Unterwasser-Roboter,16.49,LEGO-31090-Creator-Unterwasser-Roboter,15.95,0.5399999999999991,3.274711946634319,0
-LEGO,DC Comics Super Heroes ,76160, Mobile Batbasis,82.95,LEGO-76160-tbd-LSH-2020-21-Produkttitel-nachgereicht,65.3,17.650000000000006,21.27787823990356,3
-LEGO,DC Comics Super Heroes ,76159, Jokers™ Trike-Verfolgungsjagd,47.49,LEGO-76159-tbd-LSH-2020-20-Produkttitel-nachgereicht,38.98,8.510000000000005,17.91956201305539,2
-LEGO,DC Comics Super Heroes ,76122, Clayface™ Invasion in die Bathöhle,91.49,LEGO-DC-Batman-Clayface-76122-Invasion-Bath%C3%B6hle-Bauset,73.71,17.78,19.433817903596022,3
-LEGO,Architecture ,21052, Dubai,53.49,LEGO-21052-Architecture-Skyline-Kollektion-Sammlerset,42.88,10.61,19.835483267900543,2
-LEGO,DC Comics Super Heroes ,76137, Batman™ vs. der Raub des Riddler™,9.49,LEGO-DC-Batman-76137-Batman-Riddler-Bauset,6.99,2.5,26.343519494204426,0
-LEGO,Architecture ,21046, Empire State Building,84.49,LEGO-21046-Architecture-Empire-Buildinb,72.95,11.539999999999992,13.658421114924833,3
-LEGO,Architecture ,21044, Paris,39.95,LEGO-21044-Architecture-Paris,39.95,0.0,0.0,1
+LEGO,DUPLO® ,10882, Eisenbahn Schienen,19.99,LEGO-DUPLO-Eisenbahn-Schienen-10882-Konstruktionsspielzeug,16.07,3.919999999999998,19.60980490245122,0
+LEGO,DUPLO® ,10875, Güterzug,84.95,LEGO-10875-LEGO-DUPLO-G%C3%BCterzug-Kinderspielzeug,77.9,7.049999999999997,8.298999411418478,3
 LEGO,Disney Princess ,43176, Arielles Märchenbuch,15.99,LEGO-43176-Arielle-M%C3%A4rchenbuch-Princess,16.6,-0.6100000000000012,-3.814884302689188,0
-LEGO,Architecture ,21043, San Francisco,39.95,LEGO-Architecture-21043-San-Francisco,38.95,1.0,2.5031289111389237,1
-LEGO,Architecture ,21042, Freiheitsstatue,79.95,LEGO-21042-Architecture-Freiheitsstatue-Mehrfarbig,66.92,13.030000000000001,16.297686053783615,3
-LEGO,Architecture ,21045, Trafalgar Square,59.99,LEGO-21045-Architecture-Trafalgar-Square-Bauset,56.53,3.460000000000001,5.767627937989666,2
 LEGO,Disney Princess ,41166, Elsa und die Rentierkutsche,29.99,LEGO-41166-Confidential-Produkttitel-nachgereicht,20.71,9.279999999999998,30.943647882627538,1
 LEGO,Disney Princess ,41165, Annas Kanufahrt,17.95,LEGO-41165-Confidential-Produkttitel-nachgereicht,16.61,1.3399999999999999,7.465181058495822,0
+LEGO,Architecture ,21043, San Francisco,39.95,LEGO-Architecture-21043-San-Francisco,38.95,1.0,2.5031289111389237,1
+LEGO,Architecture ,21034, London,38.95,LEGO-Architecture-21034-Skyline-collection,30.56,8.390000000000004,21.540436456996158,1
+LEGO,Architecture ,21042, Freiheitsstatue,79.95,LEGO-21042-Architecture-Freiheitsstatue-Mehrfarbig,66.92,13.030000000000001,16.297686053783615,3
+LEGO,Architecture ,21051, Tokio,46.49,LEGO-21051-Architecture-Skyline-Kollektion-Sammlerset,43.93,2.5600000000000023,5.50656055065606,2
+LEGO,Architecture ,21045, Trafalgar Square,59.99,LEGO-21045-Architecture-Trafalgar-Square-Bauset,56.53,3.460000000000001,5.767627937989666,2
+LEGO,DC Comics Super Heroes ,76158, Verfolgung des Pinguins – mit dem Batboat,9.49,LEGO-76158-tbd-LSH-2020-19-Produkttitel-nachgereicht,7.95,1.54,16.227608008429925,0
+LEGO,DC Comics Super Heroes ,76122, Clayface™ Invasion in die Bathöhle,91.49,LEGO-DC-Batman-Clayface-76122-Invasion-Bath%C3%B6hle-Bauset,72.74,18.75,20.494043064815827,3
+LEGO,DC Comics Super Heroes ,76137, Batman™ vs. der Raub des Riddler™,9.49,LEGO-DC-Batman-76137-Batman-Riddler-Bauset,6.99,2.5,26.343519494204426,0
 LEGO,NINJAGO® ,70673, ShuriCopter,29.49,LEGO-70673-LEGO-NINJAGO-70673-ShuriCopter-Bauset,21.99,7.5,25.4323499491353,1
 LEGO,NINJAGO® ,71721, Drache des Totenkopfmagiers,72.49,LEGO-71721-Produkttitel-fehlt-Wird-nachgereicht,58.19,14.299999999999997,19.726858877086492,3
 LEGO,NINJAGO® ,71720, Feuer-Stein-Mech,65.95,LEGO-71720-Produkttitel-fehlt-Wird-nachgereicht,53.6,12.350000000000001,18.726307808946174,2
-LEGO,Disney Princess ,41168, Elsas Schmuckkästchen,39.49,LEGO-41168-Confidential-Produkttitel-nachgereicht,29.23,10.260000000000002,25.98126107875412,1
 LEGO,NINJAGO® ,71704, Kais Super-Jet,39.49,LEGO-71704-Produkttitel-fehlt-Wird-nachgereicht,27.28,12.21,30.919220055710305,1
 LEGO,NINJAGO® ,71705, Ninja-Flugsegler,116.95,LEGO-71705-Produkttitel-fehlt-Wird-nachgereicht,90.65,26.299999999999997,22.488242838820003,3
 LEGO,NINJAGO® ,71717, Reise zu den Totenkopfverliesen,24.99,LEGO-71717-Produkttitel-fehlt-Wird-nachgereicht,16.56,8.43,33.73349339735895,1
 LEGO,NINJAGO® ,71718, Wus gefährlicher Drache,17.95,LEGO-71718-Produkttitel-fehlt-Wird-nachgereicht,15.59,2.3599999999999994,13.147632311977713,0
-LEGO,Star Wars ,75250, Pasaana Speeder Jagd,47.95,LEGO-75250-CONF_CORE7_Ep9-Produkttitel-nachgereicht,37.03,10.920000000000002,22.77372262773723,2
-LEGO,Star Wars ,75249, Widerstands Y-Wing Starfighter™,65.95,LEGO-75249-CONF_CORE8_Ep9-Produkttitel-nachgereicht,53.34,12.61,19.12054586808188,2
-LEGO,Marvel Super Heroes ,76150, Spiderjet vs. Venom Mech,39.49,LEGO-76150-Marvel-Spiderjet-Spielset,28.26,11.23,28.437579133957964,1
+LEGO,Star Wars ,75243, Slave I™ – 20 Jahre LEGO Star Wars,111.49,LEGO-75243-Kinderspielzeug-Bunt,112.09,-0.6000000000000085,-0.5381648578347911,3
 LEGO,Technic ,42103, Dragster Rennauto,14.95,LEGO-42103-Dragster-Rennauto-Technic,16.38,-1.4299999999999997,-9.565217391304346,0
-LEGO,THE MOVIE ,76152, Marvel Avengers Movie 4 – Avengers – Lokis Rache,55.95,LEGO-76152-tbd-LSH-2020-13-Produkttitel-nachgereicht,46.78,9.170000000000002,16.38963360142985,2
-LEGO,THE MOVIE ,76153, Marvel Avengers Movie 4 – Avengers Helicarrier,111.49,LEGO-76153-tbd-LSH-2020-14-Produkttitel-nachgereicht,87.72,23.769999999999996,21.320297784554665,3
-LEGO,Marvel Super Heroes ,76149, Mysterios Bedrohung,34.95,LEGO-76149-Mysterios-Bedrohung-Helikopter-Spielzeug,25.21,9.740000000000002,27.868383404864097,1
-LEGO,Marvel Super Heroes ,76148, Spider-Man vs. Doc Ock,29.95,LEGO-76148-Marvel-Heroes-Spider-Man,23.27,6.68,22.303839732888147,1
+LEGO,Technic ,42100, Liebherr Bagger R 9800,364.95,LEGO-42100-CONF_Elephant-Produkttitel-nachgereicht,312.9,52.05000000000001,14.262227702424992,3
 LEGO,Technic ,42106, Stunt-Show mit Truck und Motorrad,48.95,LEGO-42106-Stunt-Show-Motorrad-Technic,38.98,9.970000000000006,20.367722165474984,2
-LEGO,Marvel Super Heroes ,76114, Spider-Mans Spinnenkrabbler,37.49,LEGO-76114-Spider-Spinnenkrabbler-Kinderspielzeug,32.83,4.660000000000004,12.429981328354236,1
 LEGO,Technic ,42107, Ducati Panigale V4 R,57.49,LEGO-42107-Produkttitel-fehlt-Wird-nachgereicht,48.73,8.760000000000005,15.237432596973393,2
 LEGO,Star Wars ,75273, Poe Damerons X-Wing Starfighter™,93.95,LEGO-75273-Damerons-X-Wing-Starfighter,71.77,22.180000000000007,23.608302288451313,3
-LEGO,Marvel Super Heroes ,76144, Avengers Hulk Helikopter Rettung,55.95,LEGO-Marvel-Heroes-76144-Mehrfarbig,46.99,8.96,16.01429848078642,2
-LEGO,Marvel Super Heroes ,76130, Starks Jet und der Drohnenangriff,55.95,LEGO-76130-Produkttitel-fehlt-Wird-nachgereicht,44.88,11.07,19.785522788203753,2
+LEGO,Star Wars ,75266, Sith Troopers™ Battle Pack,13.95,LEGO-75266-Troopers-Battle-Bauset,12.94,1.0099999999999998,7.240143369175626,0
 LEGO,Technic ,42101, Strandbuggy,9.49,LEGO-42101-Strandbuggy-Technic-Bauset,8.49,1.0,10.53740779768177,0
 LEGO,Technic ,42109, Top-Gear Ralleyauto mit App-Steuerung,119.95,LEGO-42109-Top-Gear-Ralleyauto-App-Steuerung,89.67,30.28,25.24385160483535,3
-LEGO,Technic ,42104, Renn-Truck,17.49,LEGO-42104-Renn-Truck-Technic-Bauset,14.47,3.019999999999998,17.267009719839898,0
 LEGO,Technic ,42110, Land Rover Defender,163.95,LEGO-42110-Produkttitel-fehlt-Wird-nachgereicht,126.71,37.239999999999995,22.714242146996035,3
+LEGO,THE MOVIE ,76153, Marvel Avengers Movie 4 – Avengers Helicarrier,111.49,LEGO-76153-tbd-LSH-2020-14-Produkttitel-nachgereicht,87.72,23.769999999999996,21.320297784554665,3
+LEGO,Marvel Super Heroes ,76149, Mysterios Bedrohung,34.95,LEGO-76149-Mysterios-Bedrohung-Helikopter-Spielzeug,25.21,9.740000000000002,27.868383404864097,1
+LEGO,Marvel Super Heroes ,76114, Spider-Mans Spinnenkrabbler,37.49,LEGO-76114-Spider-Spinnenkrabbler-Kinderspielzeug,32.83,4.660000000000004,12.429981328354236,1
 LEGO,Speed Champions ,76899, Lamborghini Urus ST-X & Lamborghini Huracán Super Trofeo EVO,55.95,LEGO-76899-Champions-Lamborghini-Rennwagen-Set,47.99,7.960000000000001,14.226988382484363,2
+LEGO,Marvel Super Heroes ,76144, Avengers Hulk Helikopter Rettung,55.95,LEGO-Marvel-Heroes-76144-Mehrfarbig,46.99,8.96,16.01429848078642,2
 LEGO,Minecraft ,21163, Das Redstone-Kräftemessen,54.95,LEGO-21163-Minecraft-Redstone-Kr%C3%A4ftemessen-Monsterfiguren,40.93,14.020000000000003,25.514103730664242,2
-LEGO,Minecraft ,21161, Die Crafting-Box 3.0,74.49,LEGO-21161-Minecraft-Crafting-Box-Creeper-Figuren,58.48,16.009999999999998,21.49281782789636,3
-LEGO,Minecraft ,21157, BigFig Schwein mit Zombiebaby,13.49,LEGO-21157-Minecraft-Schwein-Zombiebaby,10.97,2.5199999999999996,18.680504077094138,0
+LEGO,Marvel Super Heroes ,76115, Spider Mech vs. Venom,45.49,LEGO-76115-Marvel-Heroes-Spider,41.7,3.789999999999999,8.331501428885467,2
 LEGO,Minecraft ,21162, Das Taiga-Abenteuer,9.49,LEGO-21162-Minecraft-Taiga-Abenteuer-Spielzeug,9.0,0.4900000000000002,5.163329820864069,0
-LEGO,Minecraft ,21156, BigFig Creeper™ und Ozelot,13.49,LEGO-21156-Minecraft-BigFig-Creeper,10.89,2.5999999999999996,19.273535952557445,0
+LEGO,Minecraft ,21160, Der Illager-Überfall,65.95,LEGO-21160-Minecraft-Illager-%C3%9Cberfall-Abenteuerspielzeug,55.2,10.75,16.300227445034118,3
+LEGO,Minecraft ,21151, Das letzte Gefecht,16.95,LEGO-MinecraftTM-21151-letzte-Gefecht,14.97,1.9799999999999986,11.681415929203531,0
 LEGO,Friends ,41430, Wasserpark von Heartlake City,91.49,LEGO-41430-Produkttitel-fehlt-Wird-nachgereicht,72.13,19.36,21.16078259919117,3
-LEGO,Friends ,41428, Strandhaus mit Tretboot,47.49,LEGO-41428-Produkttitel-fehlt-Wird-nachgereicht,38.98,8.510000000000005,17.91956201305539,2
-LEGO,Friends ,41429, Heartlake City Flugzeug,63.95,LEGO-41429-Produkttitel-fehlt-Wird-nachgereicht,50.68,13.270000000000003,20.750586395621582,2
-LEGO,Friends ,41392, Camping in Heartlake City,29.99,LEGO-41392-Camping-Heartlake-Friends,20.71,9.279999999999998,30.943647882627538,1
+LEGO,Friends ,41425, Olivias Blumengarten,9.49,LEGO-41425-Produkttitel-fehlt-Wird-nachgereicht,7.95,1.54,16.227608008429925,0
+LEGO,Friends ,41393, Die große Backshow,38.95,LEGO-41393-Backshow-Friends-Bauset,28.26,10.690000000000001,27.44544287548139,1
 LEGO,City ,60139, Mobile Einsatzzentrale,33.99,LEGO-City-Polizei-60139-Konstruktionsspielzeug,28.12,5.870000000000001,17.269785230950284,1
 LEGO,City ,60266, Meeresforschungsschiff,116.95,LEGO-60266-dexploration-Produkttitel-nachgereicht,98.75,18.200000000000003,15.562206070970502,3
 LEGO,City ,60265, Meeresforschungsbasis,54.49,LEGO-60265-dexploration-Produkttitel-nachgereicht,47.3,7.190000000000005,13.195081666360808,2
@@ -89,7 +79,10 @@ LEGO,City ,60264, Meeresforschungs-U-Boot,29.95,LEGO-60264-dexploration-Produktt
 LEGO,City ,60263, Mini-U-Boot für Meeresforscher,9.49,LEGO-60263-Sous-marin-Produkttitel-nachgereicht,9.45,0.040000000000000924,0.42149631190728054,0
 LEGO,City ,60220, Müllabfuhr,14.95,LEGO-60220-City-M%C3%BCllabfuhr,16.48,-1.5300000000000011,-10.23411371237459,0
 LEGO,City ,60262, Passagierflugzeug,91.49,LEGO-60262-Produkttitel-fehlt-Wird-nachgereicht,72.13,19.36,21.16078259919117,3
+LEGO,City ,60261, Flughafen,46.49,LEGO-60261-Produkttitel-fehlt-Wird-nachgereicht,38.45,8.04,17.29404172940417,2
 LEGO,City ,60244, Polizeihubschrauber-Transport,42.49,LEGO-60244-Polizeihubschrauber-Transport-City-Bauset,31.18,11.310000000000002,26.618027771240296,1
+LEGO,City ,60243, Verfolgungsjagd mit dem Polizeihubschrauber,29.95,LEGO-60243-Verfolgungsjagd-Polizeihubschrauber-Bauset,20.46,9.489999999999998,31.68614357262103,1
+LEGO,City ,60242, Festnahme auf der Autobahn,16.95,LEGO-60242-Festnahme-Autobahn-Bauset,15.94,1.0099999999999998,5.9587020648967535,0
 LEGO,City ,60241, Polizeihundestaffel,9.49,LEGO-60241-Polizeihundestaffel-City-Bauset,9.06,0.4299999999999997,4.531085353003158,0
 LEGO,City ,60254, Rennboot-Transporter,29.95,LEGO-60254-City-Rennboot-Transporter-LKW-Spielzeug,20.99,8.96,29.916527545909855,1
 LEGO,City ,60225, Rover-Testfahrt,15.99,LEGO-60225-v%C3%A9hicule-dexploration-Konstruktionsspielzeug,14.9,1.0899999999999999,6.81676047529706,0

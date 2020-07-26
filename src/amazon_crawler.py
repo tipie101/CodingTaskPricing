@@ -52,8 +52,7 @@ class AmazonLegoSpider(scrapy.Spider):
             results.append(result)
             yield result
 
-
-if __name__ == '__main__':
+def crawl():
     process = CrawlerProcess({
     'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'
     })
@@ -61,3 +60,7 @@ if __name__ == '__main__':
     process.crawl(AmazonLegoSpider)
     process.start()
     pickle.dump(results, open( "./data/amazon.p", "wb" ))
+
+
+if __name__ == '__main__':
+    crawl()

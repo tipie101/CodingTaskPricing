@@ -1,11 +1,8 @@
-# pandas two approaches: table with redundant info (easier to plot) versus merged rows
-
-# grafics: try bib: seaborn
-# hardcodierter preissegmente median und teilmedian raussuchen???
-# todo: gesamten datenflow automatisieren mit parse_args
+import amazon_crawler
 import argparse
 import pandas as pd
 import pickle
+import lego_pricing_crawler
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -29,6 +26,7 @@ def basic_compare(path1, path2, prefix1, prefix2):
     df2 = pd.DataFrame(scraped_data_2).rename(columns={'price': price2, 'name': prefix2 + '_name'})
     
     df = df1.merge(df2, how='inner')
+    # Some articles appear several time within the amazon-store
     df = df.drop_duplicates(subset=df.columns.difference([prefix2 + '_name']))
     
     df['diff_abs'] = df[price1] - df[price2] 
@@ -60,10 +58,6 @@ def output_diff_by_category(data, category, diff_type, csv=False):
         output_as_csv(diff, './output/' + category + '_' + diff_type + '.csv')
 
 def main(args):
-    if args.crawl:
-        # crawling first
-        pass
-
 
     df, info = basic_compare('./data/toysff.p', './data/amazon.p', 'toysff', 'amazon')
     output_as_csv(df, './output/price_differences.csv')
@@ -95,7 +89,6 @@ def main(args):
     result_single = result[['article_nr', 'subbrand', 'price_segment', 'diff_abs', 'diff_%']].drop_duplicates()
     
     # Output on console and to csv if set true
-    print(info)
     output_diff_by_category(result_single, 'subbrand', 'diff_abs', args.csv)
     output_diff_by_category(result_single, 'subbrand', 'diff_%', args.csv)
     output_diff_by_category(result_single, 'price_segment', 'diff_abs', args.csv)
@@ -115,10 +108,12 @@ def main(args):
         
         plt.show()
 
+    print('Main Statistics: ')
+    print(info)
+
 
 parser = argparse.ArgumentParser(description='Comparison of Lego Pricing (Amazon vs. ToysForFun)')
 parser.add_argument('--csv', default=False, dest='csv', action='store_true', help='output the price comparisons as csv')
-parser.add_argument('--crawl', default=False, dest='crawl', action='store_true', help='use crawlers for price data before calculating')
 parser.add_argument('--no-plot', default=True, dest='plot', action='store_false', help='skip the plots')
 
 
