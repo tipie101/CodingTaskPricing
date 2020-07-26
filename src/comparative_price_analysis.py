@@ -3,7 +3,6 @@
 # grafics: try bib: seaborn
 # hardcodierter preissegmente median und teilmedian raussuchen???
 # todo: gesamten datenflow automatisieren mit parse_args
-
 import pandas as pd
 import pickle
 import matplotlib.pyplot as plt
@@ -21,61 +20,84 @@ def basic_compare(path1, path2, prefix1, prefix2, filter=None):
     scraped_data_2 = pickle.load(open(path2, 'rb'))
     df2 = pd.DataFrame(scraped_data_2).rename(columns={'price': price2, 'name': prefix2 + '_name'})
     
-    # produce two tables: 1. merged rows table, 2. combined table 
-    # reconstruct the subbrands!!!
     df = df1.merge(df2, how='inner')
+    df = df.drop_duplicates(subset=df.columns.difference([prefix2 + '_name']))
+    
     df['diff_abs'] = df[price1] - df[price2] 
+    # price diff percent in relation to price1
     df['diff_%'] = 100 * df['diff_abs'] / df[price1]
 
-    # compare prices - output: #articles, abs diff, avg diff, diff%, avg diff%
+    diff = df['diff_abs'].sum()
     avg_diff = df['diff_abs'].mean()
     avg_diff_percent = df['diff_%'].mean()
     diff_percent = (df[price1].sum() - df[price2].sum()) / df[price1].sum()
 
-    print(avg_diff, avg_diff_percent, diff_percent)
-    print(len(df.article_nr.unique()))
-
-    return df.drop_duplicates(subset=df.columns.difference([prefix2 + '_name']))
+    return df, {
+        'total difference ' + prefix1 + '-' + prefix2: diff, 
+        'total differance percent': diff_percent,
+        'average diff: ': avg_diff, 
+        'average diff percent': avg_diff_percent
+    }
 
 def output_as_csv(df, name):
     df.to_csv(name, index = False)
 
 def main():
-    df = basic_compare('./data/toysff.p', './data/amazon.p', 'toysff', 'amazon')
-    output_as_csv(df, './output/price_differences.csv')
-    return
+    # TODO: add price category to df
+    df, info = basic_compare('./data/toysff.p', './data/amazon.p', 'toysff', 'amazon')
+    # output_as_csv(df, './output/price_differences.csv')
+    print(info)
+    
+    # prepare data for bar plot 
+    df = df.rename(columns={'toysff_name': 'name'})
+    df_amazon = df.drop(['amazon_name', 'toysff_price'], 1).rename(columns={'amazon_price': 'price'})
+    df_toysff = df.drop(['amazon_name', 'amazon_price'], 1).rename(columns={'toysff_price': 'price'})
+    df_amazon['src'] = ['amazon'] * df_amazon['article_nr'].count()
+    df_toysff['src'] = ['toys for fun'] * df_toysff['article_nr'].count()
+    result = pd.concat([df_amazon, df_toysff])
+    # print(result)
+    # pickle.dump(result, open('./data/comparison_amazon_toysff', 'wb'))
+    # output_as_csv(result, './output/comparison_amazon_toysff.csv')
+
+    subbrand_data = result[['subbrand', 'src', 'price']]
+    subbrand_aggregated = subbrand_data.groupby(['subbrand', 'src'])['price'].agg(['sum', 'count', 'mean'])
+    subbrand_aggregated = subbrand_aggregated.reset_index()
+    
+    print(subbrand_aggregated)
+    print('absoult difference (toysff - amazon)')
+    print(result[['subbrand', 'diff_abs']].drop_duplicates().groupby(['subbrand'])['diff_abs'].agg(['mean', 'count', 'sum']))
+    print('percentual difference (toysff - amazon) where 100% ~ toysff')
+    print(result[['subbrand', 'diff_%']].drop_duplicates().groupby(['subbrand'])['diff_%'].agg(['mean', 'count', 'sum']))
+
+    # pickle.dump(subbrand_aggregated, open('./data/comparison_amazon_toysff_subbrands', 'wb'))
+    # output_as_csv(subbrand_aggregated, './output/comparison_amazon_toysff_subbrands.csv')
+    
+    # the price sement is defined by the segment of the sum of the two prices
+    price_segments_borders = [40, 80, 120]
+    
+
+    # visualisation subbrands
+    sns.set(style="whitegrid")
+    sns.catplot(y='subbrand', x='mean', orient='h', height=8, hue='src', kind='bar', data=subbrand_aggregated, aspect=.8)
+    # sns.catplot(x='article_nr', y='price', hue='src', kind='bar', data=result, height=2.5, aspect=.8)
+    plt.title('Subbrands: Average Prices €')
+    plt.tight_layout(pad=1.08, h_pad=None, w_pad=None, rect=None)
+    plt.show()
+
+    # visualation price_segments
     
     # TODO: 
     # Methode schreiben: 
     # match_dfs() calls 1. filter_pairs(), 2. add_subbrand   
 
+    # welcher shop ist günstiger?
+    # wie groß sind die preisunterschiede absoult und prozentual?
+    # gibt es unterschiede auf subbrand- oder preissegment-ebene?
 
+    # develop an entry_point for the tool
+    # arg_parser mit params wie --crawl, --export_csv, --analyse_diff, --plot 
 
-
-
-    # add types for merging / use the base data again?
-    amazon_data = amazon_data.iloc[:, :-1][amazon_data['article_nr'].isin(df['article_nr'])]
-
-    print('Amazon')
-    print(amazon_data)
     return
-
-    toys_data = toys_data.iloc[:, :-1][toys_data['article_nr'].isin(df['article_nr'])]
-    amazon_data = amazon_data.rename(columns={'amazon_price': 'price'})
-    toys_data = toys_data.rename(columns={'toysff_price': 'price'})
-    
-    
-    amazon_data['src'] = ['amazon'] * amazon_data['article_nr'].count()
-    toys_data['src'] = ['toys for fun'] * toys_data['article_nr'].count()
-
-    # print(toys_data)
-
-    result = pd.concat([amazon_data, toys_data])
-    print(result)
-
-    g = sns.catplot(x='article_nr', y='price', hue='src', kind='bar', data=result)
-    
-    plt.show()
 
     # Idee: die prozentual gesehen stärksten Ausreißer aufführen
     # 1. hübsches feature 
