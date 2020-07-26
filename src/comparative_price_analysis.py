@@ -56,7 +56,6 @@ def output_as_csv(df, name):
 def main():
     df, info = basic_compare('./data/toysff.p', './data/amazon.p', 'toysff', 'amazon')
     output_as_csv(df, './output/price_differences.csv')
-    print(info)
  
     # prepare data for bar plot 
     df = df.rename(columns={'toysff_name': 'name'})
@@ -65,9 +64,9 @@ def main():
     df_amazon['src'] = ['amazon'] * df_amazon['article_nr'].count()
     df_toysff['src'] = ['toys for fun'] * df_toysff['article_nr'].count()
     result = pd.concat([df_amazon, df_toysff])
-    # print(result)
-    # pickle.dump(result, open('./data/comparison_amazon_toysff', 'wb'))
-    # output_as_csv(result, './output/comparison_amazon_toysff.csv')
+    print(result)
+    pickle.dump(result, open('./data/comparison_amazon_toysff', 'wb'))
+    output_as_csv(result, './output/comparison_amazon_toysff.csv')
 
     # data for subbrand plot
     subbrand_data = result[['subbrand', 'src', 'price']]
@@ -79,14 +78,24 @@ def main():
     segment_aggregated = segment_data.groupby(['price_segment', 'src'])['price'].agg(['sum', 'count', 'mean'])
     segment_aggregated = segment_aggregated.reset_index()
 
-    print(subbrand_aggregated)
+    # for the correct count- and sum-aggregation we need to drop duplicates
+    # all values below are the same for 'src=amazon' and 'src=toysff'
+    result_single = result[['article_nr', 'subbrand', 'price_segment', 'diff_abs', 'diff_%']].drop_duplicates()
+    
+    # TODO: Save this Info as CVS
+    print(info)
     print('absoult difference (toysff - amazon)')
-    print(result[['subbrand', 'diff_abs']].drop_duplicates().groupby(['subbrand'])['diff_abs'].agg(['mean', 'count', 'sum']))
-    print('percentual difference (toysff - amazon) where 100% ~ toysff')
-    print(result[['subbrand', 'diff_%']].drop_duplicates().groupby(['subbrand'])['diff_%'].agg(['mean', 'count', 'sum']))
-
-    # pickle.dump(subbrand_aggregated, open('./data/comparison_amazon_toysff_subbrands', 'wb'))
-    # output_as_csv(subbrand_aggregated, './output/comparison_amazon_toysff_subbrands.csv')
+    print(result_single[['subbrand', 'diff_abs']].groupby(['subbrand'])['diff_abs'].agg(['mean', 'count', 'sum']))
+    # csv
+    print('percentual difference (toysff - amazon) in %  where 100% ~ toysff')
+    print(result_single[['subbrand', 'diff_%']].groupby(['subbrand'])['diff_%'].agg(['mean', 'count']))
+    # csv
+    print('absoult difference (toysff - amazon)')
+    print(result_single[['price_segment', 'diff_abs']].groupby(['price_segment'])['diff_abs'].agg(['mean', 'count', 'sum']))
+    # csv
+    print('percentual difference (toysff - amazon) in % where 100% ~ toysff')
+    print(result_single[['price_segment', 'diff_%']].groupby(['price_segment'])['diff_%'].agg(['mean', 'count']))
+    # csv
 
     # visualisation subbrands
     sns.set(style="whitegrid")
@@ -104,6 +113,7 @@ def main():
     # TODO: 
     # develop an entry_point for the tool
     # arg_parser mit params wie --crawl, --export_csv, --analyse_diff, --plot 
+
 
 if __name__ == '__main__':
     main()
