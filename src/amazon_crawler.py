@@ -1,14 +1,8 @@
 # There is an amazon-search API: https://webservices.amazon.com/paapi5/documentation/search-items.html
 # However, to use it one needs the credentials of a fully accepted Amazon Associate
 
-# looking for: <a class="a-size-base a-link-normal a-text-normal" href="/LEGO-...-41343-.../"
-# price is already given via next tag:
-# <span class="a-price" data-a-size="l" data-a-color="base"><span class="a-offscreen">32,09 €</span><span aria-hidden="true"><span class="a-price-whole">32,09</span><span class="a-price-symbol">€</span></span></span>
-# click on the link to find out if amazon is selling!
-# look at <div id="merchant-info"> "Verkauf und Versnad durch Amazon" - perfekt!!!
-# id="price_inside_buybox"
 
-import lego_pricing_crawler  # TODO: utils bib!
+import lego_pricing_crawler
 import pandas as pd
 import pickle
 import re
