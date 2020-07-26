@@ -8,6 +8,16 @@ import pickle
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+
+price_segments_borders = [0, 40, 80, 120]
+
+def price_seg(price_added):
+    for x in reversed(range(len(price_segments_borders))):
+        if price_added >= price_segments_borders[x]:
+            return x
+    # Error: negative price
+    return -1
+
 def basic_compare(path1, path2, prefix1, prefix2, filter=None):
     price1 = prefix1 + '_price' 
     price2 = prefix2 + '_price'
@@ -26,6 +36,7 @@ def basic_compare(path1, path2, prefix1, prefix2, filter=None):
     df['diff_abs'] = df[price1] - df[price2] 
     # price diff percent in relation to price1
     df['diff_%'] = 100 * df['diff_abs'] / df[price1]
+    df['price_segment'] = (df[price1] + df[price2]).apply(price_seg)
 
     diff = df['diff_abs'].sum()
     avg_diff = df['diff_abs'].mean()
@@ -43,11 +54,10 @@ def output_as_csv(df, name):
     df.to_csv(name, index = False)
 
 def main():
-    # TODO: add price category to df
     df, info = basic_compare('./data/toysff.p', './data/amazon.p', 'toysff', 'amazon')
-    # output_as_csv(df, './output/price_differences.csv')
+    output_as_csv(df, './output/price_differences.csv')
     print(info)
-    
+ 
     # prepare data for bar plot 
     df = df.rename(columns={'toysff_name': 'name'})
     df_amazon = df.drop(['amazon_name', 'toysff_price'], 1).rename(columns={'amazon_price': 'price'})
@@ -59,10 +69,16 @@ def main():
     # pickle.dump(result, open('./data/comparison_amazon_toysff', 'wb'))
     # output_as_csv(result, './output/comparison_amazon_toysff.csv')
 
+    # data for subbrand plot
     subbrand_data = result[['subbrand', 'src', 'price']]
     subbrand_aggregated = subbrand_data.groupby(['subbrand', 'src'])['price'].agg(['sum', 'count', 'mean'])
     subbrand_aggregated = subbrand_aggregated.reset_index()
     
+    # data for price segment plot
+    segment_data = result[['price_segment', 'src', 'price']]
+    segment_aggregated = segment_data.groupby(['price_segment', 'src'])['price'].agg(['sum', 'count', 'mean'])
+    segment_aggregated = segment_aggregated.reset_index()
+
     print(subbrand_aggregated)
     print('absoult difference (toysff - amazon)')
     print(result[['subbrand', 'diff_abs']].drop_duplicates().groupby(['subbrand'])['diff_abs'].agg(['mean', 'count', 'sum']))
@@ -71,38 +87,23 @@ def main():
 
     # pickle.dump(subbrand_aggregated, open('./data/comparison_amazon_toysff_subbrands', 'wb'))
     # output_as_csv(subbrand_aggregated, './output/comparison_amazon_toysff_subbrands.csv')
-    
-    # the price sement is defined by the segment of the sum of the two prices
-    price_segments_borders = [40, 80, 120]
-    
 
     # visualisation subbrands
     sns.set(style="whitegrid")
     sns.catplot(y='subbrand', x='mean', orient='h', height=8, hue='src', kind='bar', data=subbrand_aggregated, aspect=.8)
-    # sns.catplot(x='article_nr', y='price', hue='src', kind='bar', data=result, height=2.5, aspect=.8)
-    plt.title('Subbrands: Average Prices €')
+    plt.title('Subbrands: Average Prices in €')
     plt.tight_layout(pad=1.08, h_pad=None, w_pad=None, rect=None)
+    # visualation price_segments
+    sns.set(style="whitegrid")
+    sns.catplot(y='price_segment', x='mean', orient='h', height=8, hue='src', kind='bar', data=segment_aggregated, aspect=.8)
+    plt.title('Price Segments: Average Prices €')
+    plt.tight_layout(pad=1.08, h_pad=None, w_pad=None, rect=None)
+    
     plt.show()
 
-    # visualation price_segments
-    
     # TODO: 
-    # Methode schreiben: 
-    # match_dfs() calls 1. filter_pairs(), 2. add_subbrand   
-
-    # welcher shop ist günstiger?
-    # wie groß sind die preisunterschiede absoult und prozentual?
-    # gibt es unterschiede auf subbrand- oder preissegment-ebene?
-
     # develop an entry_point for the tool
     # arg_parser mit params wie --crawl, --export_csv, --analyse_diff, --plot 
-
-    return
-
-    # Idee: die prozentual gesehen stärksten Ausreißer aufführen
-    # 1. hübsches feature 
-    # 2. hilft dabei fehler zu finden
-
 
 if __name__ == '__main__':
     main()
