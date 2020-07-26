@@ -1,14 +1,24 @@
 # crawler with scrapy
 import pickle
+import re
 import scrapy
 from scrapy.crawler import CrawlerProcess
 
 
 base_url = 'https://www.toys-for-fun.com/de/kategorien/bauen-konstruieren/lego/'
 subbrands = [
-    'architecture', 'bionicle', 'duplo', 'city', 'juniors', 'classic', 'disney-princess',
-    'friends', 'elves', 'speed-champions', 'star-wars', 'movie', 'technic'
+    'juniors','duplo', 'classic','creator','disney-princess','friends','city','nexo-knights', 
+    'architecture', 'castle', 'dc-comic-super-heroes', 'exclusive-sets', 'legends-of-chima', 
+    'movie', 'marvel-super-heroes', 'mindstorms', 'mixels', 'ninjago', 'star-wars', 'technic', 
+    'teenage-mutant-ninja-turtles', 'ultra-agents', 'bionicle', 'elves', 'pirates', 
+    'speed-champions', 'minifiguren', 'minecraft'
 ]
+
+#    'dc-super-hero-girls', 'legor-sonstige', 
+#    'legor-brickheadz', 'legor-boost', 'legor-special-edition-sets', 'legor-ostern', 
+#    'legor-jurassic-worldtm', 'legor-harry-pottertm', 'legor-froehliche-steinachten', 
+#    'legor-4', 'legor-overwatch', 'legor-hidden-sidetm', 'legor-dotstm'
+
 results = []
 
 # lego item url: https://www.toys-for-fun.com/de/60139-mobile-einsatzzentrale.html
@@ -50,12 +60,16 @@ def convert_price(parsed_price):
 def extract_product_info(info):
     if type(info) != str:
         return None
-    split = info.split()
+    digits = re.findall(r" (\d{5}) ", info)
+    if len(digits) != 1:
+        return None
+    art_nr = digits[0]
+    split = info.split(art_nr)
     return {
-        'brand': split[0].replace('®', ''),
-        'subbrand': split[1].replace('®', ''),
-        'article_nr': split[2],
-        'name': " ".join(split[3:])
+        'brand': 'LEGO',
+        'subbrand': split[0].replace('LEGO® ', '').replace('™', ''),
+        'article_nr': art_nr.strip(),
+        'name': split[1]
     }
     
 

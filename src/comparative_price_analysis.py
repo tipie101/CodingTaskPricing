@@ -5,21 +5,21 @@
 # todo: gesamten datenflow automatisieren mit parse_args
 
 import pandas as pd
+import pickle
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-amazon_path = './dummy_data/amazon.csv'
-toysff_path = './dummy_data/toysforfun.csv'
 
+def main():  
+    # TODO: In Methode auslagern
+    scraped_data_toysff = pickle.load(open('./data/toysff.p', 'rb'))
+    toys_data = pd.DataFrame(scraped_data_toysff).rename(columns={'price': 'toysff_price', 'name': 'toysff_name'})
 
-def main():
-    # verwendung von pickle!
-    amazon_data = pd.read_csv(amazon_path, header=None, sep=';', names=['article_nr', 'subbrand', 'amazon_price', 'amazon_name'], encoding='utf-16')
-    toys_data = pd.read_csv(toysff_path, header=None, sep=';', names=['article_nr', 'subbrand', 'toysff_price', 'toysff_amazon_name'], encoding='utf-16')
-
-
+    scraped_data_amazon = pickle.load(open('./data/amazon.p', 'rb'))
+    amazon_data = pd.DataFrame(scraped_data_amazon).rename(columns={'price': 'amazon_price', 'name': 'amazon_ifo'})
     
     # produce two tables: 1. merged rows table, 2. combined table 
+    # reconstruct the subbrands!!!
     df = amazon_data.merge(toys_data, how='inner')
     df['diff_abs'] = df['toysff_price'] - df['amazon_price'] 
     df['diff_%'] = 100 * df['diff_abs'] / df['toysff_price']
@@ -28,14 +28,29 @@ def main():
     avg_diff_percent = df['diff_%'].mean()
     diff_percent = (df['toysff_price'].sum() - df['amazon_price'].sum()) / df['toysff_price'].sum()
     print(avg_diff, avg_diff_percent, diff_percent)
+    print(df)  # TODO: CSV-EXPORT
+    print(len(df.article_nr.unique()))
+    return
+    
+    # TODO: 
+    # Methode schreiben: 
+    # match_dfs() calls 1. filter_pairs(), 2. add_subbrand   
+
+
+
 
 
     # add types for merging / use the base data again?
     amazon_data = amazon_data.iloc[:, :-1][amazon_data['article_nr'].isin(df['article_nr'])]
-    toys_data = toys_data.iloc[:, :-1][toys_data['article_nr'].isin(df['article_nr'])]
 
+    print('Amazon')
+    print(amazon_data)
+    return
+
+    toys_data = toys_data.iloc[:, :-1][toys_data['article_nr'].isin(df['article_nr'])]
     amazon_data = amazon_data.rename(columns={'amazon_price': 'price'})
     toys_data = toys_data.rename(columns={'toysff_price': 'price'})
+    
     
     amazon_data['src'] = ['amazon'] * amazon_data['article_nr'].count()
     toys_data['src'] = ['toys for fun'] * toys_data['article_nr'].count()

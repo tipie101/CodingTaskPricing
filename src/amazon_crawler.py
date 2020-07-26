@@ -48,7 +48,7 @@ class AmazonLegoSpider(scrapy.Spider):
             info = response.request.url.split('/')[3]     
             article_nr = re.findall(r"\D(\d{5})\D", info)[0]
             price = lego_pricing_crawler.convert_price(response.css("#price_inside_buybox::text").extract_first())
-            result = {'brand': 'LEGO', 'subbrand': '-', 'article_nr': article_nr, 'name': info, 'price': price}
+            result = {'brand': 'LEGO', 'article_nr': article_nr, 'name': info, 'price': price}
             results.append(result)
             yield result
 
