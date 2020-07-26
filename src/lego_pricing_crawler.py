@@ -1,4 +1,5 @@
-# crawler with scrapy
+# crawler for lego articles of toys-for-fun.com
+
 import pickle
 import re
 import scrapy
@@ -13,35 +14,24 @@ subbrands = [
     'teenage-mutant-ninja-turtles', 'ultra-agents', 'bionicle', 'elves', 'pirates', 
     'speed-champions', 'minifiguren', 'minecraft'
 ]
-
-#    'dc-super-hero-girls', 'legor-sonstige', 
-#    'legor-brickheadz', 'legor-boost', 'legor-special-edition-sets', 'legor-ostern', 
-#    'legor-jurassic-worldtm', 'legor-harry-pottertm', 'legor-froehliche-steinachten', 
-#    'legor-4', 'legor-overwatch', 'legor-hidden-sidetm', 'legor-dotstm'
-
 results = []
-
-# lego item url: https://www.toys-for-fun.com/de/60139-mobile-einsatzzentrale.html
 # lego category url: https://www.toys-for-fun.com/de/kategorien/bauen-konstruieren/lego/duplo.html
 
-# used for 
 class SpiderToysffLego(scrapy.Spider):
     name = 'test'
     allowed_domains = ["www.toys-for-fun.com"]
 
     start_urls = [
-        # using exactly one url in order to gather all and only all products in the store of a given subbrand
+        # using exactly one url for each subbrand
         ''.join([base_url, brand, '.html']) for brand in subbrands
     ]
 
-    # def set_subbrand(self, brand):
-    #    self.subbrand = brand
-    #    self.start_urls[0] = ''.join([self.base_url, self.subbrand, '.html'])
 
     def parse(self, response):
         class_tag = '.product-info'
         for product in response.css(class_tag):
             result = extract_product_info(product.css('.product-name ::text').extract_first())
+            # Choose special-price instead of the old one
             if product.css('.special-price'):
                 result['price'] = convert_price(product.css('.special-price .price ::text').extract_first())
             else:
@@ -49,7 +39,7 @@ class SpiderToysffLego(scrapy.Spider):
             results.append(result)
             yield result
 
-    
+
 def convert_price(parsed_price):
     if type(parsed_price) == str:
         parsed_price = parsed_price.replace(',', '.')
@@ -74,13 +64,16 @@ def extract_product_info(info):
         'article_nr': art_nr.strip(),
         'name': split[1]
     }
-    
 
-if __name__ == '__main__':
+
+def scrape():
     process = CrawlerProcess({
     'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'
     })
-    # SpiderToysffLego.set_subbrand('city')
     process.crawl(SpiderToysffLego)
     process.start()
     pickle.dump(results, open( "./data/toysff.p", "wb" ))
+
+
+if __name__ == '__main__':
+    scrape()

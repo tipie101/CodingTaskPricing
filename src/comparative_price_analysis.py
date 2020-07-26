@@ -3,6 +3,7 @@
 # grafics: try bib: seaborn
 # hardcodierter preissegmente median und teilmedian raussuchen???
 # todo: gesamten datenflow automatisieren mit parse_args
+import argparse
 import pandas as pd
 import pickle
 import matplotlib.pyplot as plt
@@ -18,14 +19,11 @@ def price_seg(price_added):
     # Error: negative price
     return -1
 
-def basic_compare(path1, path2, prefix1, prefix2, filter=None):
+def basic_compare(path1, path2, prefix1, prefix2):
     price1 = prefix1 + '_price' 
     price2 = prefix2 + '_price'
     scraped_data_1 = pickle.load(open(path1, 'rb'))
     df1 = pd.DataFrame(scraped_data_1).rename(columns={'price': price1, 'name': prefix1 + '_name'})
-    if filter:
-        # filter by subbrand and/or price_segment
-        df1 = filter(df1)
 
     scraped_data_2 = pickle.load(open(path2, 'rb'))
     df2 = pd.DataFrame(scraped_data_2).rename(columns={'price': price2, 'name': prefix2 + '_name'})
@@ -53,7 +51,20 @@ def basic_compare(path1, path2, prefix1, prefix2, filter=None):
 def output_as_csv(df, name):
     df.to_csv(name, index = False)
 
-def main():
+def output_diff_by_category(data, category, diff_type, csv=False):
+    print(diff_type + ' (toysff - amazon)')
+    diff = data[[category, diff_type]].groupby([category])[diff_type].agg(['mean', 'count'])
+    print(diff)
+    diff = diff.reset_index()
+    if csv:
+        output_as_csv(diff, './output/' + category + '_' + diff_type + '.csv')
+
+def main(args):
+    if args.crawl:
+        # crawling first
+        pass
+
+
     df, info = basic_compare('./data/toysff.p', './data/amazon.p', 'toysff', 'amazon')
     output_as_csv(df, './output/price_differences.csv')
  
@@ -66,7 +77,8 @@ def main():
     result = pd.concat([df_amazon, df_toysff])
     print(result)
     pickle.dump(result, open('./data/comparison_amazon_toysff', 'wb'))
-    output_as_csv(result, './output/comparison_amazon_toysff.csv')
+    if args.csv:
+        output_as_csv(result, './output/comparison_amazon_toysff.csv')
 
     # data for subbrand plot
     subbrand_data = result[['subbrand', 'src', 'price']]
@@ -82,38 +94,33 @@ def main():
     # all values below are the same for 'src=amazon' and 'src=toysff'
     result_single = result[['article_nr', 'subbrand', 'price_segment', 'diff_abs', 'diff_%']].drop_duplicates()
     
-    # TODO: Save this Info as CVS
+    # Output on console and to csv if set true
     print(info)
-    print('absoult difference (toysff - amazon)')
-    print(result_single[['subbrand', 'diff_abs']].groupby(['subbrand'])['diff_abs'].agg(['mean', 'count', 'sum']))
-    # csv
-    print('percentual difference (toysff - amazon) in %  where 100% ~ toysff')
-    print(result_single[['subbrand', 'diff_%']].groupby(['subbrand'])['diff_%'].agg(['mean', 'count']))
-    # csv
-    print('absoult difference (toysff - amazon)')
-    print(result_single[['price_segment', 'diff_abs']].groupby(['price_segment'])['diff_abs'].agg(['mean', 'count', 'sum']))
-    # csv
-    print('percentual difference (toysff - amazon) in % where 100% ~ toysff')
-    print(result_single[['price_segment', 'diff_%']].groupby(['price_segment'])['diff_%'].agg(['mean', 'count']))
-    # csv
+    output_diff_by_category(result_single, 'subbrand', 'diff_abs', args.csv)
+    output_diff_by_category(result_single, 'subbrand', 'diff_%', args.csv)
+    output_diff_by_category(result_single, 'price_segment', 'diff_abs', args.csv)
+    output_diff_by_category(result_single, 'price_segment', 'diff_%', args.csv)
 
-    # visualisation subbrands
-    sns.set(style="whitegrid")
-    sns.catplot(y='subbrand', x='mean', orient='h', height=8, hue='src', kind='bar', data=subbrand_aggregated, aspect=.8)
-    plt.title('Subbrands: Average Prices in €')
-    plt.tight_layout(pad=1.08, h_pad=None, w_pad=None, rect=None)
-    # visualation price_segments
-    sns.set(style="whitegrid")
-    sns.catplot(y='price_segment', x='mean', orient='h', height=8, hue='src', kind='bar', data=segment_aggregated, aspect=.8)
-    plt.title('Price Segments: Average Prices €')
-    plt.tight_layout(pad=1.08, h_pad=None, w_pad=None, rect=None)
-    
-    plt.show()
+    if args.plot:
+        # visualisation subbrands
+        sns.set(style="whitegrid")
+        sns.catplot(y='subbrand', x='mean', orient='h', height=8, hue='src', kind='bar', data=subbrand_aggregated, aspect=.8)
+        plt.title('Subbrands: Average Prices in €')
+        plt.tight_layout(pad=1.08, h_pad=None, w_pad=None, rect=None)
+        # visualation price_segments
+        sns.set(style="whitegrid")
+        sns.catplot(y='price_segment', x='mean', orient='h', height=8, hue='src', kind='bar', data=segment_aggregated, aspect=.8)
+        plt.title('Price Segments: Average Prices €')
+        plt.tight_layout(pad=1.08, h_pad=None, w_pad=None, rect=None)
+        
+        plt.show()
 
-    # TODO: 
-    # develop an entry_point for the tool
-    # arg_parser mit params wie --crawl, --export_csv, --analyse_diff, --plot 
+
+parser = argparse.ArgumentParser(description='Comparison of Lego Pricing (Amazon vs. ToysForFun)')
+parser.add_argument('--csv', default=False, dest='csv', action='store_true', help='output the price comparisons as csv')
+parser.add_argument('--crawl', default=False, dest='crawl', action='store_true', help='use crawlers for price data before calculating')
+parser.add_argument('--no-plot', default=True, dest='plot', action='store_false', help='skip the plots')
 
 
 if __name__ == '__main__':
-    main()
+    main(parser.parse_args())
